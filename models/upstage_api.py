@@ -24,7 +24,7 @@ def extract_academic_transcript(input_filename):
         messages=[
             {
                 "role": "system",
-                "content": "You are a helpful assistant."
+                "content": "You are a professional assistant."
             },
             {
                 "role": "user",
@@ -33,8 +33,8 @@ def extract_academic_transcript(input_filename):
                            "Return the data in the following format without any additional text: "
                            "'Subject Number and Name, Mark, Credit Points'. Each course should be on a new line."
                            "For example: 'COMP1511 Programming Fundamentals, 85, 6'."
-                           "credit points only have value under 20."
-                           "if mark doesn't have a number, fill it 0. "
+                           "ensure the credit points are under 20."
+                           "if the mark field is empty, replace it with 0. "
             }
         ],
         stream=True,
