@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPA Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Your GPA Results</h1>
+    <p>Current GPA: {{ current_gpa }}</p>
+    <p>Predicted GPA for Next Semester: {{ predicted_gpa }}</p>
+    <p>{{ encouragement }}</p>
+</body>
+</html>
