@@ -3,12 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>GPA Results</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .result-box {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px #aaaaaa;
+            display: inline-block;
+            width: 50%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Your GPA Results</h1>
-    <p>Current GPA: {{ current_gpa }}</p>
-    <p>Predicted GPA for Next Semester: {{ predicted_gpa }}</p>
-    <p>{{ encouragement }}</p>
+    <div class="container">
+        <div class="result-box">
+            <h1>Your GPA Results</h1>
+            <p class="lead">Current GPA: <strong>{{ current_gpa }}</strong></p>
+            <p class="lead">You have surpassed: <strong>{{ percentile }}%</strong> of all studnets</p>
+            <p class="lead">Predicted GPA for Next Semester: <strong>{{ predicted_gpa }}</strong></p>
+            <p class="text-success">{{ encouragement }}</p>
+        </div>
+    </div>
 </body>
 </html>

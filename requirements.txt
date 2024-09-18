@@ -1,7 +1,10 @@
-pandas
+pandas~=2.2.2
 sklearn
-joblib
-flask
-werkzeug
-openai
-requests
+joblib~=1.4.2
+flask~=3.0.3
+werkzeug~=3.0.3
+openai~=1.40.6
+requests~=2.32.3
+scipy~=1.14.0
+numpy~=2.0.1
+scikit-learn~=1.5.1

@@ -3,61 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload Transcript</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .course {
+            margin-bottom: 15px;
+        }
+        .btn-add {
+            margin-bottom: 0px;
+        }
+    </style>
     <script>
-        // Function to add a new course input group
         function addCourse() {
             const courseContainer = document.getElementById('course-container');
             const newCourse = document.createElement('div');
             newCourse.classList.add('course');
             newCourse.innerHTML = `
-                <div>
-                    <label>Subject Number and Name:</label>
-                    <input type="text" name="subject_name[]" required>
-                    <label>Mark:</label>
-                    <input type="number" name="mark[]" required>
-                    <label>Credit Points:</label>
-                    <input type="number" name="credit_points[]" required>
-                    <button type="button" onclick="removeCourse(this)">Delete</button>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label>Subject Number and Name:</label>
+                        <input type="text" class="form-control" name="subject_name[]" size="50" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Mark:</label>
+                        <input type="number" class="form-control" name="mark[]" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Credit Points:</label>
+                        <input type="number" class="form-control" name="credit_points[]" required>
+                    </div>
+                    <div class="form-group col-md-1 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger btn-block" onclick="removeCourse(this)">Delete</button>
+                    </div>
                 </div>
             `;
             courseContainer.appendChild(newCourse);
         }
 
-        // Function to remove a course input group
         function removeCourse(button) {
-            button.parentElement.parentElement.remove();
+            button.parentElement.parentElement.parentElement.remove();
         }
     </script>
 </head>
 <body>
-    <h1>Upload your Transcript</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
-        <input type="submit" value="Upload">
-    </form>
-
-    {% if detected_courses %}
-    <h2>Detected Courses</h2>
-    <form action="{{ url_for('show_page') }}" method="post">
-        <div id="course-container">
-            {% for course in detected_courses %}
-            <div class="course">
-                <div>
-                    <label>Subject Number and Name:</label>
-                    <input type="text" name="subject_name[]" value="{{ course.subject_name }}" required>
-                    <label>Mark:</label>
-                    <input type="number" name="mark[]" value="{{ course.mark }}" required>
-                    <label>Credit Points:</label>
-                    <input type="number" name="credit_points[]" value="{{ course.credit_points }}" required>
-                    <button type="button" onclick="removeCourse(this)">Delete</button>
-                </div>
+    <div class="container">
+        <h1 class="text-center">Upload your Transcript</h1>
+        <form action="/" method="post" enctype="multipart/form-data" class="mt-4">
+            <div class="form-group">
+                <input type="file" class="form-control-file" name="file">
             </div>
-            {% endfor %}
-        </div>
-        <button type="button" onclick="addCourse()">Add Course</button>
-        <input type="submit" value="Confirm">
-    </form>
-    {% endif %}
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        {% if detected_courses %}
+        <h2 class="mt-5">Detected Courses</h2>
+        <form action="{{ url_for('show_page') }}" method="post">
+            <div id="course-container">
+                {% for course in detected_courses %}
+                <div class="course form-row">
+                    <div class="form-group col-md-5">
+                        <label>Subject Number and Name:</label>
+                        <input type="text" class="form-control" name="subject_name[]" value="{{ course.subject_name }}" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Mark:</label>
+                        <input type="number" class="form-control" name="mark[]" value="{{ course.mark }}" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Credit Points:</label>
+                        <input type="number" class="form-control" name="credit_points[]" value="{{ course.credit_points }}" required>
+                    </div>
+                    <div class="form-group col-md-1 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger btn-block" onclick="removeCourse(this)">Delete</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="button" class="btn btn-secondary btn-add" onclick="addCourse()">Add Course</button>
+            <button type="submit" class="btn btn-success">Confirm</button>
+        </form>
+        {% endif %}
+    </div>
 </body>
 </html>

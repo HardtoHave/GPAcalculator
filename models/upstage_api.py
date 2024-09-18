@@ -34,7 +34,7 @@ def extract_academic_transcript(input_filename):
                            "'Subject Number and Name, Mark, Credit Points'. Each course should be on a new line."
                            "For example: 'COMP1511 Programming Fundamentals, 85, 6'."
                            "ensure the credit points are under 20."
-                           "if the mark field is empty, replace it with 0. "
+                           "if the mark field is empty, fill 0. "
             }
         ],
         stream=True,
